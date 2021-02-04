@@ -1,18 +1,25 @@
 const express = require('express');
 const app = express();
 const things = require('./routes/things')
+const path = require('path')
+const bodyParser = require('body-parser')
+    // ------------------------------------------------------------
+    // -------------------------------------------------------------
+app.use(express.static(path.join(__dirname, "public")))
+app.use(bodyParser.urlencoded({ urlencoded: }))
+
+
 app.use('/', (req, res, next) => {
     console.log(1)
-        // res.json({
-        //     name: "reza",
-        //     pass: "111111"
-        // })
     req.test = "test"
     next();
 })
 app.get('/', (req, res) => {
     console.log(2, req.test)
-    res.send("Hello express")
+        // res.sendFile(__dirname + '\\public\\login.html');
+    res.sendFile(path.join(__dirname, 'public/login.html'));
+
+
 })
 app.use('/things', things)
 app.listen(5005, () => {
