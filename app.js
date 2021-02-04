@@ -6,7 +6,7 @@ const bodyParser = require('body-parser')
     // ------------------------------------------------------------
     // -------------------------------------------------------------
 app.use(express.static(path.join(__dirname, "public")))
-app.use(bodyParser.urlencoded({ urlencoded: }))
+app.use(bodyParser.urlencoded({ extended: false }))
 
 
 app.use('/', (req, res, next) => {
